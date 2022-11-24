@@ -7,27 +7,31 @@ import {
   AiOutlineCloudUpload,
   AiOutlineComment,
 } from "react-icons/ai";
-import { TbLogout } from "react-icons/tb";
+import { TbLogout, TbReport } from "react-icons/tb";
 // import { MdOutlineSupervisorAccount } from "react-icons/hi";
 import { GiTeamIdea } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import {
   MdLocalGroceryStore,
   MdNotificationsNone,
+  MdOutlineAddShoppingCart,
   MdOutlineAddTask,
+  MdOutlineLocalConvenienceStore,
   MdOutlineSupervisorAccount,
   MdOutlineSwitchAccount,
   MdSportsScore,
 } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
-import { HiTicket } from "react-icons/hi";
+import { HiOutlineShoppingCart, HiTicket } from "react-icons/hi";
+import {GoRequestChanges} from "react-icons/go"
 import { Store } from "../utils/store";
-import { GrTicket, GrUserAdmin } from "react-icons/gr";
+import { GrDocumentPerformance, GrTicket, GrUserAdmin } from "react-icons/gr";
 import { FaDonate, FaWpforms } from "react-icons/fa";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Gun from "gun/gun";
+import { RiCustomerService2Fill } from "react-icons/ri";
 const Dashboard = (props) => {
   const router = useRouter();
   const [isOpen, setOpen] = useState(false);
@@ -82,25 +86,23 @@ const Dashboard = (props) => {
     <div className="flex">
       {!isOpen ? (
         <nav
-          className="z-10 text-lg bg-gray-200 shadow-2xl sm:hidden w-1/6 text-gray-700 p-4"
-          // style={{ backgroundColor: "#B1E0E5" }}
+          className="z-10 bg-white shadow-2xl sm:hidden w-1/6 text-black py-4 px-3"
         >
-          <div className="mb-4 text-center">
+          <div className="mb-8 flex justify-center">
             <Link href="/" passHref>
-              <span className="cursor-pointer font-bold text-center pb-8">
-                FT<span className="text-green-600">M</span>A
-              </span>
+            <div className="flex justify-center">
+              <img src="aflink.png" alt="aflink logo" className="w-1/2"/></div>
             </Link>
           </div>
-          <h1 className="mt-4 text-xl font-serif cursor-default text-black font-bold">
+          <h1 className="pt-4 pb-4 font-bold cursor-default text-gray-300 text-xs">
             Pages
           </h1>
           <Link href="../dashboard" passHref>
             <p
               className={
                 router.pathname == "/dashboard"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
               <span className="w-5/6">Dashboard</span>
@@ -111,290 +113,268 @@ const Dashboard = (props) => {
             <p
               className={
                 router.pathname == "/dashboard/profile"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
               <span className="w-5/6">Profile</span>
               <CgProfile className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/store" passHref>
+          <Link href="../dashboard/jobCard" passHref>
             <p
               className={
-                router.pathname == "/dashboard/store"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/jobCard"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Store</span>
-              <MdLocalGroceryStore className="" />
+              <span className="w-5/6">Job Card</span>
+              <HiOutlineShoppingCart className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/ticket" passHref>
+          <Link href="../dashboard/requisition" passHref>
             <p
               className={
-                router.pathname == "/dashboard/ticket"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/requisition"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Ticket</span>
-              <HiTicket className="mt-1" />
+              <span className="w-5/6">Requisition</span>
+              <GoRequestChanges className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/investors" passHref>
+          <Link href="../dashboard/receiving" passHref>
             <p
               className={
-                router.pathname == "/dashboard/investors"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/receiving"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Advertise</span>
-              <GrUserAdmin className="mt-1" />
+              <span className="w-5/6">Reports</span>
+              <TbReport className="mt-1" />
             </p>
           </Link>
 
-          <h1 className="mt-8 text-2xl font-bold font-serif cursor-default text-black mb-4">
+          <h1 className="pt-4 font-bold cursor-default text-gray-300 text-xs">
             Forms
           </h1>
-          <Link href="../dashboard/uploadMatch" passHref>
+          <Link href="../dashboard/createJobCard" passHref>
             <p
               className={
-                router.pathname == "/dashboard/uploadMatch"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/createJobCard"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Upload Fixtures</span>
-              <MdSportsScore className="mt-2" />
+              <span className="w-5/6">Create Job Card</span>
+              <MdOutlineAddShoppingCart className="mt-2" />
             </p>
           </Link>
-          <Link href="../dashboard/createStore" passHref>
+          <Link href="../dashboard/createReceiving" passHref>
             <p
               className={
-                router.pathname == "/dashboard/createStore"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/createReceiving"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Create Team Store</span>
+              <span className="w-5/6">Create Receiving</span>
               <FaWpforms className="mt-2" />
             </p>
           </Link>
-          <Link href="../dashboard/createTicket" passHref>
+          <Link href="../dashboard/createRequisition" passHref>
             <p
               className={
-                router.pathname == "/dashboard/createTicket"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/createRequisition"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Create Ticket</span>
-              <GrTicket className="mt-2" />
+              <span className="w-5/6">Create Requisition</span>
+              <VscGitPullRequestCreate className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/createInvestors" passHref>
+          <div className="py-4 ">
+          <hr className="h-0.5 -mx-3 bg-black" /></div>
+          <Link href="../dashboard/customers" passHref>
             <p
               className={
-                router.pathname == "/dashboard/createInvestors"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/customers"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Upload Advertise</span>
-              <VscGitPullRequestCreate className="" />
+              <span className="w-5/6">Customers</span>
+              <RiCustomerService2Fill className="mt-1" />
             </p>
           </Link>
-          <hr className="h-0.5 bg-black" />
-          <Link href="../dashboard/viewDonation" passHref>
+          <Link href="../dashboard/suppliers" passHref>
             <p
               className={
-                router.pathname == "/dashboard/viewDonation"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/suppliers"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <span className="w-5/6">Donation</span>
-              <FaDonate className="mt-1" />
+              <span className="w-5/6">Suppliers</span>
+              <MdOutlineLocalConvenienceStore className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/viewQA" passHref>
-            <p
-              className={
-                router.pathname == "/dashboard/viewQA"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
-              }
-            >
-              <span className="w-5/6">Community</span>
-              <AiOutlineComment className="" />
-            </p>
-          </Link>
-          <div className="relative w-full flex mt-44 justify-center">
+          <div className="w-full mt-8 bg-black">
             <button
-              className="bottom-0 hover:bg-green-600 bg-black font-bold text-white uppercase cursor-pointer flex my-4 py-2 px-4"
+              className="text-xs hover:bg-red-600 w-full bg-black font-bold text-white uppercase cursor-pointer flex p-2"
               onClick={logoutClickHandler}
             >
-              <BiLogOut className="mt-1.5 text-gray-200" />
-              &nbsp;<span className="w-5/6"> Logout</span>
+              <BiLogOut className="w-1/3 text-sm" />
+              <span className="w-1/2"> Logout</span>
             </button>
           </div>
         </nav>
       ) : (
-        <nav className="z-10 text-2xl bg-gray-200 shadow-2xl text-gray-700 p-4">
-          <div className="mb-4 text-center">
+        <nav className="z-10 text-2xl bg-white shadow-2xl text-gray-700 p-4">
+          <div className="mb-8 flex justify-center">
             <Link href="/" passHref>
-              <span className="cursor-pointer font-bold text-center pb-8 text-green-600">
-                BC
-              </span>
+            <div className="flex justify-center">
+              <img src="aflink.png" alt="aflink logo" className="w-12"/></div>
             </Link>
           </div>
-          <h1 className="mt-8 text-xl font-serif cursor-default text-black">
+          <h1 className="pt-4 pb-4 font-bold cursor-default text-gray-300 text-xs">
             Pages
           </h1>
-          <Link href="/dashboard" passHref>
+          <Link href="../dashboard" passHref>
             <p
               className={
                 router.pathname == "/dashboard"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <AiFillDashboard className="" />
+              <AiFillDashboard className="mt-1" />
             </p>
           </Link>
           <Link href="../dashboard/profile" passHref>
             <p
               className={
                 router.pathname == "/dashboard/profile"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <CgProfile className="" />
+              <CgProfile className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/store" passHref>
+          <Link href="../dashboard/jobCard" passHref>
             <p
               className={
-                router.pathname == "/dashboard/store"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/jobCard"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <MdLocalGroceryStore className="" />
+              <HiOutlineShoppingCart className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/ticket" passHref>
+          <Link href="../dashboard/requisition" passHref>
             <p
               className={
-                router.pathname == "/dashboard/ticket"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/requisition"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <HiTicket className="" />
+              <GoRequestChanges className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/investors" passHref>
+          <Link href="../dashboard/reports" passHref>
             <p
               className={
-                router.pathname == "/dashboard/investors"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/reports"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <GrUserAdmin className="mt-0.5" />
+              <TbReport className="mt-1" />
             </p>
           </Link>
 
-          <h1 className="mt-8 text-2xl font-bold font-serif cursor-default text-black mb-4">
+          <h1 className="pt-4 font-bold cursor-default text-gray-300 text-xs">
             Forms
           </h1>
-          <Link href="../dashboard/uploadMatch" passHref>
+          <Link href="../dashboard/createJobCard" passHref>
             <p
               className={
-                router.pathname == "/dashboard/uploadMatch"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/createJobCard"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <MdSportsScore className="mt-2" />
+              <MdOutlineAddShoppingCart className="mt-2" />
             </p>
           </Link>
-          <Link href="/dashboard/createStore" passHref>
+          <Link href="../dashboard/createStore" passHref>
             <p
               className={
                 router.pathname == "/dashboard/createStore"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <FaWpforms className="" />
+              <FaWpforms className="mt-2" />
             </p>
           </Link>
-          <Link href="../dashboard/createTicket" passHref>
+          <Link href="../dashboard/createRequisition" passHref>
             <p
               className={
-                router.pathname == "/dashboard/createTicket"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/createRequisition"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <GrTicket className="" />
+              <VscGitPullRequestCreate className="mt-1" />
             </p>
           </Link>
-          <Link href="../dashboard/createInvestors" passHref>
+          <div className="py-4 ">
+          <hr className="h-0.5 -mx-3 bg-black" /></div>
+          <Link href="../dashboard/customers" passHref>
             <p
               className={
-                router.pathname == "/dashboard/createInvestors"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/customers"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <VscGitPullRequestCreate className="" />
+              <RiCustomerService2Fill className="mt-1" />
             </p>
           </Link>
-          <hr className="h-0.5 bg-black" />
-          <Link href="../dashboard/viewDonation" passHref>
+          <Link href="../dashboard/suppliers" passHref>
             <p
               className={
-                router.pathname == "/dashboard/viewDonation"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
+                router.pathname == "/dashboard/suppliers"
+                  ? "text-white rounded-lg px-2 shadow-xl bg-red-600 flex cursor-pointer pl-2"
+                  : "cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 my-4 pl-2"
               }
             >
-              <FaDonate className="" />
-            </p>
-          </Link>
-          <Link href="../dashboard/viewQA" passHref>
-            <p
-              className={
-                router.pathname == "/dashboard/viewQA"
-                  ? "text-green-600 font-serif flex cursor-pointer pl-2"
-                  : "cursor-pointer flex font-serif hover:text-green-600 my-4 pl-2"
-              }
-            >
-              <AiOutlineComment className="" />
+              <MdOutlineLocalConvenienceStore className="mt-1" />
             </p>
           </Link>
           <button
-            className="cursor-pointer flex hover:text-green-600 text-black pl-2"
+            className="cursor-pointer flex hover:text-white hover:rounded-lg hover:px-2 hover:shadow-xl hover:bg-red-600 text-black pl-2"
             onClick={logoutClickHandler}
           >
             <BiLogOut className="" />
           </button>
         </nav>
       )}
-      <div className="w-full">
+      <div className="w-full bg-white">
         <div className="w-full py-2 flex">
           <div className="w-3/4">
             <Hamburger color="black" toggled={isOpen} toggle={setOpen} />
           </div>
           {/* <div className="w-1/4"></div> */}
-          <div className="w-1/2 flex space-x-4">
+          <div className="w-1/2 flex justify-end px-4 space-x-4">
             <Link href="../dashboard/profile">
               <div className=" h-full grid place-items-center cursor-pointer  text-black font-bold">
                 <div className="flex space-x-2">
@@ -414,15 +394,15 @@ const Dashboard = (props) => {
                 </div>
               </div>
             </Link>
-            <button
-              className="cursor-pointer h-3/4 grid place-items-center flex text-white uppercase bg-black font-bold mt-2 text-center px-4"
+            <div className="grid place-items-center"><button
+              className="cursor-pointer grid place-items-center flex text-white uppercase bg-red-600 font-bold h-3/5 text-center px-12"
               onClick={logoutClickHandler}
             >
               <div className="flex">
                 <TbLogout className="text-xl" />
                 <p className="text-sm">Logout</p>
               </div>
-            </button>
+            </button></div>
           </div>
         </div>
         <main>

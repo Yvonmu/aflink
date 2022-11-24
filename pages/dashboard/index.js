@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Chart from "react-google-charts";
 import { AiFillDashboard } from "react-icons/ai";
 import { BsCart4 } from "react-icons/bs";
-import { RiCommunityFill, RiTeamFill } from "react-icons/ri";
+import { RiCommunityFill, RiCustomerService2Fill, RiTeamFill } from "react-icons/ri";
 import { FcAdvertising, FcParallelTasks } from "react-icons/fc";
 import axios from "axios";
 import { Store } from "../../utils/store";
@@ -24,7 +24,9 @@ export const options = {
   legend: { position: "bottom" },
 };
 import Dashboard from "../../components/dashboard";
-import { HiTicket } from "react-icons/hi";
+import { HiOutlineShoppingCart, HiTicket } from "react-icons/hi";
+import { MdOutlineLocalConvenienceStore } from "react-icons/md";
+import { TbReport } from "react-icons/tb";
 
 const IndexDashboard = () => {
   return (
@@ -36,45 +38,45 @@ const IndexDashboard = () => {
         <section className="grid md:grid-cols-4 sm:grid-cols-1 mb-8 mx-12 gap-10">
           <div className="bg-white shadow-xl px-2">
             <div className="py-4 flex">
-              <BsCart4 className="mt-1 w-1/4 mr-2 text-6xl text-green-800" />
+              <TbReport className="mt-1 w-1/4 mr-2 text-6xl text-red-600" />
               <div className="right-0 md:w-3/4 sm:w-1/2 sm:ml-4 md:ml-16">
-                <h1 className="mt-1 text-3xl md:text-right font-bold mb-3">
+                <h1 className="mt-2 text-4xl md:text-right">
                   0
                 </h1>
-                <h1 className="mb-0 md:text-right">Item Sold</h1>
+                <h1 className="mb-0 md:text-right">ItemReceived</h1>
               </div>
             </div>
           </div>
           <div className="bg-white shadow-xl px-2">
             <div className="py-4 flex">
-              <HiTicket className="mt-1 w-1/4 mr-2 text-6xl text-green-800" />
+              <HiOutlineShoppingCart className="mt-1 w-1/4 mr-2 text-6xl text-red-600" />
               <div className="right-0 md:w-3/4 sm:w-1/2 sm:ml-4 md:ml-16">
-                <h1 className="mt-1 text-3xl md:text-right font-bold mb-3">
+              <h1 className="mt-2 text-4xl md:text-right">
                   0
                 </h1>
-                <h1 className="mb-0 md:text-right">Ticket Sold</h1>
+                <h1 className="mb-0 md:text-right">Job Cards</h1>
               </div>
             </div>
           </div>
           <div className="bg-white shadow-xl px-2">
             <div className="py-4 flex">
-              <RiCommunityFill className="mt-1 w-1/4 mr-2 text-6xl text-green-800" />
+              <MdOutlineLocalConvenienceStore className="mt-1 w-1/4 mr-2 text-6xl text-red-600" />
               <div className="right-0 md:w-3/4 sm:w-1/2 sm:ml-4 md:ml-16">
-                <h1 className="mt-1 text-3xl md:text-right font-bold mb-3">
+              <h1 className="mt-2 text-4xl md:text-right">
                   0
                 </h1>
-                <h1 className="mb-0 md:text-right">Community</h1>
+                <h1 className="mb-0 md:text-right">Suppliers</h1>
               </div>
             </div>
           </div>
           <div className="bg-white shadow-xl px-2">
             <div className="py-4 flex">
-              <FcAdvertising className="mt-1 w-1/4 mr-2 text-6xl text-green-800" />
+              <RiCustomerService2Fill className="mt-1 w-1/4 mr-2 text-6xl text-red-600" />
               <div className="right-0 md:w-3/4 sm:w-1/2 sm:ml-4 md:ml-16">
-                <h1 className="mt-1 text-3xl md:text-right font-bold mb-3">
+              <h1 className="mt-2 text-4xl md:text-right">
                   0
                 </h1>
-                <h1 className="mb-0 md:text-right">Advertise</h1>
+                <h1 className="mb-0 md:text-right">Customers</h1>
               </div>
             </div>
           </div>
